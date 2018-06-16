@@ -1,3 +1,5 @@
+.idea/
+.DS_Store
 # Built application files
 *.apk
 *.ap_
@@ -6,7 +8,6 @@
 *.dex
 
 # Java class files
-*.class
 
 # Generated files
 bin/
@@ -63,3 +64,4 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
