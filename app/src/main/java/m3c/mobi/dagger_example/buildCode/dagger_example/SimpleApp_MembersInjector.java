@@ -17,27 +17,19 @@ public final class SimpleApp_MembersInjector
     implements MembersInjector
 {
 
-    public SimpleApp_MembersInjector(Provider activityInjectorProvider, Provider broadcastReceiverInjectorProvider, Provider fragmentInjectorProvider, Provider serviceInjectorProvider, Provider contentProviderInjectorProvider)
+    public SimpleApp_MembersInjector(Provider activityInjectorProvider)
     {
         this.activityInjectorProvider = activityInjectorProvider;
-        this.broadcastReceiverInjectorProvider = broadcastReceiverInjectorProvider;
-        this.fragmentInjectorProvider = fragmentInjectorProvider;
-        this.serviceInjectorProvider = serviceInjectorProvider;
-        this.contentProviderInjectorProvider = contentProviderInjectorProvider;
     }
 
-    public static MembersInjector create(Provider activityInjectorProvider, Provider broadcastReceiverInjectorProvider, Provider fragmentInjectorProvider, Provider serviceInjectorProvider, Provider contentProviderInjectorProvider)
+    public static MembersInjector create(Provider activityInjectorProvider)
     {
-        return new SimpleApp_MembersInjector(activityInjectorProvider, broadcastReceiverInjectorProvider, fragmentInjectorProvider, serviceInjectorProvider, contentProviderInjectorProvider);
+        return new SimpleApp_MembersInjector(activityInjectorProvider);
     }
 
     public void injectMembers(SimpleApp instance)
     {
         DaggerApplication_MembersInjector.injectActivityInjector(instance, (DispatchingAndroidInjector)activityInjectorProvider.get());
-        DaggerApplication_MembersInjector.injectBroadcastReceiverInjector(instance, (DispatchingAndroidInjector)broadcastReceiverInjectorProvider.get());
-        DaggerApplication_MembersInjector.injectFragmentInjector(instance, (DispatchingAndroidInjector)fragmentInjectorProvider.get());
-        DaggerApplication_MembersInjector.injectServiceInjector(instance, (DispatchingAndroidInjector)serviceInjectorProvider.get());
-        DaggerApplication_MembersInjector.injectContentProviderInjector(instance, (DispatchingAndroidInjector)contentProviderInjectorProvider.get());
         DaggerApplication_MembersInjector.injectSetInjected(instance);
     }
 
@@ -47,8 +39,4 @@ public final class SimpleApp_MembersInjector
     }
 
     private final Provider activityInjectorProvider;
-    private final Provider broadcastReceiverInjectorProvider;
-    private final Provider fragmentInjectorProvider;
-    private final Provider serviceInjectorProvider;
-    private final Provider contentProviderInjectorProvider;
 }

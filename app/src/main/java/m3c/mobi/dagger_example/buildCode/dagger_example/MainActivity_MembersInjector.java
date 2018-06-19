@@ -18,23 +18,19 @@ public final class MainActivity_MembersInjector
     implements MembersInjector
 {
 
-    public MainActivity_MembersInjector(Provider supportFragmentInjectorProvider, Provider frameworkFragmentInjectorProvider, Provider modelProvider, Provider activityUtilProvider)
+    public MainActivity_MembersInjector(Provider modelProvider, Provider activityUtilProvider)
     {
-        this.supportFragmentInjectorProvider = supportFragmentInjectorProvider;
-        this.frameworkFragmentInjectorProvider = frameworkFragmentInjectorProvider;
         this.modelProvider = modelProvider;
         this.activityUtilProvider = activityUtilProvider;
     }
 
-    public static MembersInjector create(Provider supportFragmentInjectorProvider, Provider frameworkFragmentInjectorProvider, Provider modelProvider, Provider activityUtilProvider)
+    public static MembersInjector create(Provider modelProvider, Provider activityUtilProvider)
     {
-        return new MainActivity_MembersInjector(supportFragmentInjectorProvider, frameworkFragmentInjectorProvider, modelProvider, activityUtilProvider);
+        return new MainActivity_MembersInjector(modelProvider, activityUtilProvider);
     }
 
     public void injectMembers(MainActivity instance)
     {
-        DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(instance, (DispatchingAndroidInjector)supportFragmentInjectorProvider.get());
-        DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(instance, (DispatchingAndroidInjector)frameworkFragmentInjectorProvider.get());
         injectModel(instance, (String)modelProvider.get());
         injectActivityUtil(instance, (ActivityUtil)activityUtilProvider.get());
     }
@@ -54,8 +50,6 @@ public final class MainActivity_MembersInjector
         injectMembers((MainActivity)obj);
     }
 
-    private final Provider supportFragmentInjectorProvider;
-    private final Provider frameworkFragmentInjectorProvider;
     private final Provider modelProvider;
     private final Provider activityUtilProvider;
 }

@@ -38,7 +38,6 @@ public class MainActivity extends DaggerAppCompatActivity
         screenMetrics.setText(text1);
     }
 
-    private static final String TAG = m3c/mobi/dagger_example/MainActivity.getSimpleName();
     String model;
     ActivityUtil activityUtil;
 

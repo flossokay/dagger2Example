@@ -33,6 +33,5 @@ public class SimpleApp extends DaggerApplication
         return DaggerSimpleApp_Component.builder().create(this);
     }
 
-    private static final String TAG = m3c/mobi/dagger_example/SimpleApp.getSimpleName();
 
 }

@@ -45,8 +45,6 @@ public final class DaggerSimpleApp_Component
 
         private MainActivity injectMainActivity(MainActivity instance)
         {
-            DaggerAppCompatActivity_MembersInjector.injectSupportFragmentInjector(instance, getDispatchingAndroidInjectorOfFragment());
-            DaggerAppCompatActivity_MembersInjector.injectFrameworkFragmentInjector(instance, DaggerSimpleApp_Component.this.getDispatchingAndroidInjectorOfFragment());
             MainActivity_MembersInjector.injectModel(instance, BuildModule_ProvideModelFactory.proxyProvideModel());
             MainActivity_MembersInjector.injectActivityUtil(instance, (ActivityUtil)providesActivityUtilProvider.get());
             return instance;
@@ -70,13 +68,14 @@ public final class DaggerSimpleApp_Component
 
     }
 
-    private final class MainActivitySubcomponentBuilder extends m3c.mobi.dagger_example.dagger.modules.ActivityBindingModule_ContributeYourActivityInjector.MainActivitySubcomponent.Builder
+    private final class MainActivitySubcomponentBuilder extends
+            m3c.mobi.dagger_example.dagger.modules.ActivityBindingModule_ContributeYourActivityInjector.MainActivitySubcomponent.Builder
     {
 
         public m3c.mobi.dagger_example.dagger.modules.ActivityBindingModule_ContributeYourActivityInjector.MainActivitySubcomponent build()
         {
             if(seedInstance == null)
-                throw new IllegalStateException((new StringBuilder()).append(m3c/mobi/dagger_example/MainActivity.getCanonicalName()).append(" must be set").toString());
+                throw new IllegalStateException((new StringBuilder()).append(MainActivity.getCanonicalName()).append(" must be set").toString());
             else
                 return new MainActivitySubcomponentImpl(this);
         }
@@ -116,7 +115,7 @@ public final class DaggerSimpleApp_Component
             if(activityModule == null)
                 activityModule = new ActivityModule();
             if(seedInstance == null)
-                throw new IllegalStateException((new StringBuilder()).append(m3c/mobi/dagger_example/SimpleApp.getCanonicalName()).append(" must be set").toString());
+                throw new IllegalStateException((new StringBuilder()).append(SimpleApp.getCanonicalName()).append(" must be set").toString());
             else
                 return new DaggerSimpleApp_Component(this);
         }
@@ -159,7 +158,7 @@ public final class DaggerSimpleApp_Component
 
     private Map getMapOfClassOfAndProviderOfFactoryOf()
     {
-        return Collections.singletonMap(m3c/mobi/dagger_example/MainActivity, mainActivitySubcomponentBuilderProvider);
+        return Collections.singletonMap(MainActivity, mainActivitySubcomponentBuilderProvider);
     }
 
     private DispatchingAndroidInjector getDispatchingAndroidInjectorOfActivity()
@@ -167,25 +166,6 @@ public final class DaggerSimpleApp_Component
         return DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(getMapOfClassOfAndProviderOfFactoryOf());
     }
 
-    private DispatchingAndroidInjector getDispatchingAndroidInjectorOfBroadcastReceiver()
-    {
-        return DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(Collections.emptyMap());
-    }
-
-    private DispatchingAndroidInjector getDispatchingAndroidInjectorOfFragment()
-    {
-        return DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(Collections.emptyMap());
-    }
-
-    private DispatchingAndroidInjector getDispatchingAndroidInjectorOfService()
-    {
-        return DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(Collections.emptyMap());
-    }
-
-    private DispatchingAndroidInjector getDispatchingAndroidInjectorOfContentProvider()
-    {
-        return DispatchingAndroidInjector_Factory.newDispatchingAndroidInjector(Collections.emptyMap());
-    }
 
     private void initialize(Builder builder)
     {
@@ -221,10 +201,6 @@ public final class DaggerSimpleApp_Component
     private SimpleApp injectSimpleApp(SimpleApp instance)
     {
         DaggerApplication_MembersInjector.injectActivityInjector(instance, getDispatchingAndroidInjectorOfActivity());
-        DaggerApplication_MembersInjector.injectBroadcastReceiverInjector(instance, getDispatchingAndroidInjectorOfBroadcastReceiver());
-        DaggerApplication_MembersInjector.injectFragmentInjector(instance, getDispatchingAndroidInjectorOfFragment());
-        DaggerApplication_MembersInjector.injectServiceInjector(instance, getDispatchingAndroidInjectorOfService());
-        DaggerApplication_MembersInjector.injectContentProviderInjector(instance, getDispatchingAndroidInjectorOfContentProvider());
         DaggerApplication_MembersInjector.injectSetInjected(instance);
         return instance;
     }
